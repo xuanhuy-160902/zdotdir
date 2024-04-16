@@ -1,0 +1,60 @@
+#
+# .zplugins - antidote plugins file
+#
+
+# Pre-reqs
+mattmc3/zephyr path:plugins/zfunctions
+$ZSH_CUSTOM path:plugins/xdg
+
+# Zephyr
+mattmc3/zephyr path:plugins/homebrew
+mattmc3/zephyr path:plugins/environment
+mattmc3/zephyr path:plugins/utility
+mattmc3/zephyr path:plugins/color
+mattmc3/zephyr path:plugins/directory
+mattmc3/zephyr path:plugins/history
+mattmc3/zephyr path:plugins/macos conditional:is-macos
+
+# Clipboard
+ohmyzsh/ohmyzsh path:lib/clipboard.zsh
+ohmyzsh/ohmyzsh path:plugins/copybuffer
+ohmyzsh/ohmyzsh path:plugins/copyfile
+ohmyzsh/ohmyzsh path:plugins/copypath
+
+# My custom plugins
+$ZSH_CUSTOM path:plugins/golang
+$ZSH_CUSTOM path:plugins/python
+$ZSH_CUSTOM path:plugins/gpg
+$ZSH_CUSTOM path:plugins/iwd
+$ZSH_CUSTOM path:plugins/otp
+
+# Utilities
+romkatv/zsh-bench kind:path
+ohmyzsh/ohmyzsh path:plugins/extract
+ohmyzsh/ohmyzsh path:plugins/aliases
+ohmyzsh/ohmyzsh path:plugins/alias-finder
+
+# Editor
+mattmc3/zephyr path:plugins/editor
+ohmyzsh/ohmyzsh path:plugins/magic-enter
+ohmyzsh/ohmyzsh path:plugins/fancy-ctrl-z
+
+# Prompts
+agkozak/agkozak-zsh-prompt conditional:is-osx-default-terminal
+
+# z - jump around
+ajeetdsouza/zoxide
+
+# Completion
+mattmc3/zephyr path:plugins/completion
+
+# Regular plugins
+mattmc3/zman
+
+# Final plugins
+mattmc3/zephyr path:plugins/confd
+zdharma-continuum/fast-syntax-highlighting
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-history-substring-search
+
+# vim: ft=zsh sw=2 ts=2 et
