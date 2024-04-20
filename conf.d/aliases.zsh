@@ -23,11 +23,14 @@ alias grep="command grep --exclude-dir={.git,.vscode}"
 # directories
 alias secrets="cd ${XDG_DATA_HOME:=~/.local/share}/secrets"
 
-# more ways to ls
-alias ll='ls -lh'
-alias la='ls -lAh'
-alias lsa="ls -aG"
-alias ldot='ls -ld .*'
+# more ways to lsd
+alias ls='lsd -FN --icon=never --group-dirs=last'
+alias la='ls -A'
+alias lt='ls --tree --depth 2'
+alias lta='lt -A'
+alias ll='ls -lht --date=relative'
+alias lla='ll -A'
+alias ldot='ls -ld --date=relative .*'
 
 # fix typos
 alias get=git
@@ -46,9 +49,10 @@ alias isodate="date +%Y-%m-%dT%H:%M:%S%z"
 alias utc="date -u +%Y-%m-%dT%H:%M:%SZ"
 alias unixepoch="date +%s"
 
-# find
-alias fd='find . -type d -name'
-alias ff='find . -type f -name'
+# fd'
+alias fd='fd --min-depth=1 --max-depth=4'
+alias fdr='fd -td'
+alias ffl='fd -tf'
 
 # disk usage
 alias biggest='du -s ./* | sort -nr | awk '\''{print $2}'\'' | xargs du -sh'
@@ -69,8 +73,8 @@ alias zbench='for i in {1..10}; do /usr/bin/time zsh -lic exit; done'
 alias cls="clear && printf '\e[3J'"
 
 # print things
-alias print-fpath='for fp in $fpath; do echo $fp; done; unset fp'
-alias print-path='echo $PATH | tr ":" "\n"'
+alias print-fpath='print -l $fpath'
+alias print-path='print -l $path'
 alias print-functions='print -l ${(k)functions[(I)[^_]*]} | sort'
 
 # auto-orient images based on exif tags
@@ -78,17 +82,12 @@ alias autorotate="jhead -autorot"
 
 # dotfiles
 alias dotf='cd "$DOTFILES"'
-alias dotfed='cd "$DOTFILES" && ${VISUAL:-${EDITOR:-vim}} .'
+alias edit-dotf='cd "$DOTFILES" && ${VISUAL:-${EDITOR:-vim}} .'
 alias dotfl="cd \$DOTFILES/local"
-alias fdot='cd ${XDG_CONFIG_HOME:=$HOME/.config}/fish'
-alias fconf=fdot
 alias zdot='cd $ZDOTDIR'
+alias edit-zdot='cd "$ZDOTDIR" && ${VISUAL:-${EDITOR:-vim}} .'
 
 # java
 alias setjavahome="export JAVA_HOME=\`/usr/libexec/java_home\`"
-
-# todo-txt
-alias t="todo.sh"
-alias todos="$VISUAL $HOME/Desktop/todo.txt"
 
 # vim: ft=zsh sw=2 ts=2 et
