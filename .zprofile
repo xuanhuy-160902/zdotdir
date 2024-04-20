@@ -57,6 +57,7 @@ path=(
   /{usr/local,opt/homebrew}/opt/ruby/bin(N)
   /{usr/local,opt/homebrew}/lib/ruby/gems/*/bin(N)
   $HOME/.gem/ruby/*/bin(N)
+  "/Applications/Visual Studio Code.app/Contents/Resources/app/bin"(N)
 
   # path
   $path
