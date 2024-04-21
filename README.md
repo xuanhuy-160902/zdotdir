@@ -1,25 +1,38 @@
-# zdotdir
+# Zsh Configuration Repository
 
-My `$ZDOTDIR` [dotfiles] directory, which contains my zsh configuration.
+Welcome to my [Zsh][zsh] configuration repository! Here you'll find all the [dotfiles][dotfiles] and custom configurations necessary to manage my Zsh environment.
 
-## My Terminal
+This setup aims to provide a streamlined and efficient shell experience, blending the power of Zsh with the intuitive features of [Fish][fish].
 
-![My Terminal][zdotdir_gif]
+## Features
 
-## My setup
+### Fish-Like Behavior
 
-I like my Zsh to behave like [Fish][fish], so there's a lot of features that will be very familiar to other Fish users.
+If you're familiar with Fish, you'll feel right at home with this Zsh configuration. It incorporates various features and behaviors inspired by Fish, making navigation and command execution more intuitive.
 
-- A functions directory for my custom functions
-- A completions directory for my custom functions
-- A conf.d directory so that .zshrc isn't a cluttered mess
-- A plugins directory similar to [oh-my-zsh] for adding/removing shell features
+### Custom Functions
+
+The [functions][zdotdir/tree/master/functions] directory houses all my custom functions, tailored to enhance productivity and streamline common tasks. Feel free to explore and modify them according to your preferences.
+
+### Custom Completions
+
+In the [completions][zdotdir/tree/master/completions] directory, you'll find custom completion scripts to enhance command line autocomplete functionality. These completions are designed to provide comprehensive suggestions for various commands and utilities.
+
+### Conf.d Organization
+
+To maintain a clean and organized [.zshrc][zdotdir/blob/master/.zshrc], configuration files are separated into the [conf.d][zdotdir/tree/master/conf.d] directory. This approach prevents clutter and allows for easier management of individual settings and configurations.
+
+### Plugin Management
+
+Similar to [Oh My Zsh][oh-my-zsh], the [plugins][zdotdir/tree/master/plugins] directory offers a convenient way to add or remove shell features. Whether you're looking to extend Zsh's capabilities or customize your shell environment, this directory provides flexibility and modularity.
 
 ## Installation
 
-Since this is my personal `$ZDOTDIR`, this installation procedure is mostly for my personal use.
+To set up this repository for your Zsh configuration, follow these steps:
 
-It's a good idea to backup existing files first:
+### Backup Existing Files
+
+Before proceeding with the installation, it's advisable to backup any existing Zsh configuration files to prevent accidental data loss. Run the following commands to back up your current configurations:
 
 ```zsh
 setopt extended_glob
@@ -35,89 +48,59 @@ done
 unset zfile zfiles
 ```
 
-Install this dotfiles repo to your `$ZDOTDIR`:
+### Installation Steps
+
+Follow these steps to install this dotfiles repository to your $ZDOTDIR:
+
+1. Set ZDOTDIR Variable:Set the ZDOTDIR variable to point to the location where you want to store your Zsh configuration files. For example, to use ~/.config/zsh as the ZDOTDIR:
 
 ```zsh
-# set the amazing ZDOTDIR variable
+# Set the amazing ZDOTDIR variable
 export ZDOTDIR=~/.config/zsh
+```
 
-# clone this repo
+2. Clone the Repository:Clone this repository (or your fork) recursively to include any submodules:
+
+```zsh
 git clone --recursive git@github.com:mattmc3/zdotdir.git $ZDOTDIR
+```
 
-# change the root .zshenv file to use ZDOTDIR
+3. Update .zshenv File:Update your root .zshenv file to reference the newly set ZDOTDIR:
+
+```zsh
 cat << 'EOF' >| ~/.zshenv
 export ZDOTDIR=~/.config/zsh
 [[ -f $ZDOTDIR/.zshenv ]] && . $ZDOTDIR/.zshenv
 EOF
+```
 
-# load zsh
+4. Load Zsh:Reload Zsh to apply the changes:
+
+```zsh
 zsh
 ```
 
-## Performance
+### Note
 
-A snappy shell is very important. My config includes a `zbench` alias
-that runs zsh 10 times and presents the timings.
+Ensure that you have Git installed and configured on your system before proceeding with the installation.
 
-The latest benchmark run shows that we load a new shell pretty fast.
+Please remember to review and adjust the installation steps according to your specific environment and preferences.
 
-```zsh
-% # MacBook Air (M1, 2020)
-% for i in $(seq 10); do; /usr/bin/time zsh -lic exit; done
-        0.06 real         0.03 user         0.02 sys
-        0.04 real         0.02 user         0.01 sys
-        0.04 real         0.02 user         0.01 sys
-        0.04 real         0.02 user         0.01 sys
-        0.04 real         0.02 user         0.01 sys
-        0.04 real         0.02 user         0.01 sys
-        0.04 real         0.02 user         0.02 sys
-        0.04 real         0.02 user         0.01 sys
-        0.04 real         0.02 user         0.01 sys
-        0.04 real         0.02 user         0.01 sys
+## Acknowledgments
 
-% # pure prompt
-% zsh-bench
-==> benchmarking login shell of user matt ...
-creates_tty=0
-has_compsys=1
-has_syntax_highlighting=0
-has_autosuggestions=1
-has_git_prompt=0
-first_prompt_lag_ms=17.076
-first_command_lag_ms=83.892
-command_lag_ms=57.657
-input_lag_ms=5.708
-exit_time_ms=43.770
-```
+I would like to extend my special thanks to [mattmc3][mattmc3] for the invaluable reference to the [zdotdir repository][mattmc3/zdotdir]. His work has inspired and influenced the structure and organization of this repository, contributing significantly to its development.
 
-## Look-and-feel
+## Contributions
 
-### Fonts
+Contributions, suggestions, and feedback are always welcome! If you have any improvements or enhancements to propose, feel free to open an issue or submit a pull request.
 
-Install [nerd fonts][nerd-fonts] via homebrew:
+## License
 
-```zsh
-brew tap homebrew/cask-fonts
-brew install --cask font-meslo-lg-nerd-font
-brew install --cask font-fira-code-nerd-font
-brew install --cask font-hack-nerd-font
-brew install --cask font-inconsolata-nerd-font
-brew install --cask font-sauce-code-pro-nerd-font
-```
-
-### Color schemes
-
-iTerm2 has some awesome [color schemes][iterm2-colors]. You can use them for more than
-just iTerm2.
-
-I use Space Gray:
-
-<p align="center">
-  <img alt="space gray" src="https://github.com/mbadolato/iTerm2-Color-Schemes/blob/master/screenshots/space_gray.png?raw=true"/>
-</p>
+This repository is licensed under the [MIT][MIT] License. Feel free to use, modify, and distribute the code as per the terms of the license.
 
 ## Resources
 
+- [zsh][zsh]
 - [fish][fish]
 - [antidote][antidote]
 - [zephyr][zephyr]
@@ -125,22 +108,28 @@ I use Space Gray:
 - [zsh_unplugged][zsh_unplugged]
 - [prezto][prezto]
 - [oh-my-zsh][oh-my-zsh]
-- [supercharge your terminal with zsh][supercharge-zsh]
 - [awesome zsh][awesome-zsh-plugins]
 
-[antidote]:             https://github.com/mattmc3/antidote
-[awesome-zsh-plugins]:  https://github.com/unixorn/awesome-zsh-plugins
-[fish]:                 https://fishshell.com
-[dotfiles]:             https://dotfiles.github.io/
-[homebrew]:             https://brew.sh
-[iterm2-colors]:        https://github.com/mbadolato/iTerm2-Color-Schemes
-[nerd-fonts]:           https://github.com/ryanoasis/nerd-fonts
-[oh-my-zsh]:            https://github.com/ohmyzsh/ohmyzsh
-[prezto]:               https://github.com/sorin-ionescu/prezto
-[starship-toml]:        https://github.com/mattmc3/zdotdir/blob/main/prompt/starship.toml
-[starship]:             https://starship.rs
-[supercharge-zsh]:      https://blog.callstack.io/supercharge-your-terminal-with-zsh-8b369d689770
-[zdotdir_gif]:          https://raw.githubusercontent.com/mattmc3/zdotdir/resources/img/zdotdir.gif
-[zephyr]:               https://github.com/zshzoo/zephyr
-[zsh_unplugged]:        https://github.com/mattmc3/zsh_unplugged
-[zshzoo]:               https://github.com/zshzoo/zshzoo
+[//]: <Introduction's Links">
+[Zsh]: https://www.zsh.org/
+[Fish]: https://fishshell.com
+[dotfiles]: https://dotfiles.github.io/
+[//]: <Features' Links">
+[zdotdir/tree/master/functions]: https://github.com/xuanhuy-160902/zdotdir/tree/master/functions
+[zdotdir/tree/master/completions]: https://github.com/xuanhuy-160902/zdotdir/tree/master/completions
+[zdotdir/blob/master/.zshrc]: https://github.com/xuanhuy-160902/zdotdir/blob/master/.zshrc
+[zdotdir/tree/master/conf.d]: https://github.com/xuanhuy-160902/zdotdir/tree/master/conf.d
+[zdotdir/tree/master/plugins]: https://github.com/xuanhuy-160902/zdotdir/tree/master/plugins
+[//]: <Acknowledgments' Links">
+[mattmc3]: https://github.com/mattmc3
+[mattmc3/zdotdir]: https://github.com/mattmc3/zdotdir
+[//]: <License's Links">
+[MIT]: https://opensource.org/license/mit
+[//]: <Resources' Links">
+[antidote]: https://github.com/mattmc3/antidote
+[zephyr]: https://github.com/zshzoo/zephyr
+[zshzoo]: https://github.com/zshzoo/zshzoo
+[zsh_unplugged]: https://github.com/mattmc3/zsh_unplugged
+[prezto]: https://github.com/sorin-ionescu/prezto
+[oh-my-zsh]: https://github.com/ohmyzsh/ohmyzsh
+[awesome-zsh-plugins]: https://github.com/unixorn/awesome-zsh-plugins
