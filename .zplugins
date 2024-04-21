@@ -1,19 +1,31 @@
-#
-# .zplugins - antidote plugins file
-#
+#?
+#? Plugins that need to be loaded first
+#?
 
-# Pre-reqs
 mattmc3/zephyr path:plugins/zfunctions
 $ZSH_CUSTOM path:plugins/xdg
 
-# Zephyr
-mattmc3/zephyr path:plugins/homebrew
-mattmc3/zephyr path:plugins/environment
-mattmc3/zephyr path:plugins/utility
-mattmc3/zephyr path:plugins/color
+#?
+#? Completion
+#?
+
+mattmc3/zephyr path:plugins/completion
+
+#?
+#? Plugins
+#?
+
 mattmc3/zephyr path:plugins/directory
 mattmc3/zephyr path:plugins/history
+mattmc3/zephyr path:plugins/color
+mattmc3/zephyr path:plugins/utility
+mattmc3/zephyr path:plugins/homebrew
 mattmc3/zephyr path:plugins/macos conditional:is-macos
+
+# Editor
+mattmc3/zephyr path:plugins/editor
+ohmyzsh/ohmyzsh path:plugins/magic-enter
+ohmyzsh/ohmyzsh path:plugins/fancy-ctrl-z
 
 # Clipboard
 ohmyzsh/ohmyzsh path:lib/clipboard.zsh
@@ -21,37 +33,38 @@ ohmyzsh/ohmyzsh path:plugins/copybuffer
 ohmyzsh/ohmyzsh path:plugins/copyfile
 ohmyzsh/ohmyzsh path:plugins/copypath
 
-# My custom plugins
+# Other utilities
+romkatv/zsh-bench kind:path
+ohmyzsh/ohmyzsh path:plugins/extract
+ohmyzsh/ohmyzsh path:plugins/aliases
+ohmyzsh/ohmyzsh path:plugins/alias-finder
+
+# z - jump around
+ajeetdsouza/zoxide
+
+# Use fzf to quickly browse Zsh manuals
+mattmc3/zman
+
+#?
+#? Custom
+#?
+
 $ZSH_CUSTOM path:plugins/golang
 $ZSH_CUSTOM path:plugins/python
 $ZSH_CUSTOM path:plugins/gpg
 $ZSH_CUSTOM path:plugins/iwd
 $ZSH_CUSTOM path:plugins/otp
 
-# Utilities
-romkatv/zsh-bench kind:path
-ohmyzsh/ohmyzsh path:plugins/extract
-ohmyzsh/ohmyzsh path:plugins/aliases
-ohmyzsh/ohmyzsh path:plugins/alias-finder
+#?
+#? Prompt
+#?
 
-# Editor
-mattmc3/zephyr path:plugins/editor
-ohmyzsh/ohmyzsh path:plugins/magic-enter
-ohmyzsh/ohmyzsh path:plugins/fancy-ctrl-z
-
-# Prompts
 agkozak/agkozak-zsh-prompt conditional:is-osx-default-terminal
 
-# z - jump around
-ajeetdsouza/zoxide
+#?
+#? Plugins that need to be loaded last
+#?
 
-# Completion
-mattmc3/zephyr path:plugins/completion
-
-# Regular plugins
-mattmc3/zman
-
-# Final plugins
 mattmc3/zephyr path:plugins/confd
 zdharma-continuum/fast-syntax-highlighting
 zsh-users/zsh-autosuggestions
