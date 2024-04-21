@@ -17,15 +17,18 @@ for _zdir in __zsh_{config,user_data,cache}_dir; do
 done
 unset _zdir
 
+# Homebrew setup
+export HOMEBREW_PREFIX="/opt/homebrew"
+export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
+export HOMEBREW_REPOSITORY="/opt/homebrew"
+
 # Custom
 export DOTFILES=$XDG_CONFIG_HOME/dotfiles
 export GNUPGHOME=$XDG_DATA_HOME/gnupg
 export REPO_HOME=$XDG_CACHE_HOME/repos
 export ANTIDOTE_HOME=$REPO_HOME/antidote
 export VOLTA_HOME=$REPO_HOME/volta
-export HOMEBREW_PREFIX="/opt/homebrew"
-export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
-export HOMEBREW_REPOSITORY="/opt/homebrew"
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-21.jdk/Contents/Home
 
 # Ensure path arrays do not contain duplicates.
 typeset -gU fpath path cdpath manpath
