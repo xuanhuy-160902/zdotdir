@@ -1,26 +1,7 @@
-# XDG
-export XDG_CONFIG_HOME=~/.config
-export XDG_CACHE_HOME=~/.cache
-export XDG_DATA_HOME=~/.local/share
-export XDG_STATE_HOME=~/.local/state
-export XDG_RUNTIME_DIR=~/.xdg
-export XDG_PROJECTS_DIR=~/Projects
-
-# Add variables for key Zsh directories.
-export __zsh_config_dir=${ZDOTDIR:-${XDG_CONFIG_HOME:-$HOME/.config}/zsh}
-export __zsh_user_data_dir=${XDG_DATA_HOME:-$HOME/.local/share}/zsh
-export __zsh_cache_dir=${XDG_CACHE_HOME:-$HOME/.cache}/zsh
-
-# Ensure Zsh directories exist.
-for _zdir in __zsh_{config,user_data,cache}_dir; do
-  [[ -d "${(P)_zdir}" ]] || mkdir -p ${(P)_zdir}
-done
-unset _zdir
-
-# Homebrew setup
-export HOMEBREW_PREFIX="/opt/homebrew"
-export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
-export HOMEBREW_REPOSITORY="/opt/homebrew"
+#!/bin/zsh
+#
+# .zprofile - Run on login Zsh session.
+#
 
 # Custom
 export DOTFILES=$XDG_CONFIG_HOME/dotfiles
@@ -31,7 +12,20 @@ export VOLTA_HOME=$REPO_HOME/volta
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-21.jdk/Contents/Home
 
 # Ensure path arrays do not contain duplicates.
-typeset -gU fpath path cdpath manpath
+typeset -gU fpath path cdpath manpath mailpath
+
+# Homebrew setup
+typeset -aU _brewcmd=(
+  $HOME/.homebrew/bin/brew(N)
+  $HOME/.linuxbrew/bin/brew(N)
+  /opt/homebrew/bin/brew(N)
+  /usr/local/bin/brew(N)
+  /home/linuxbrew/.linuxbrew/bin/brew(N)
+)
+if (( $#_brewcmd )); then
+  source <($_brewcmd[1] shellenv | grep -v '\bPATH\b')
+fi
+unset _brewcmd
 
 # Set the list of directories that cd searches.
 cdpath=(
@@ -66,27 +60,23 @@ path=(
   $path
 )
 
-manpath=(
-  /opt/homebrew/share/man
+# Set common variables if they have not already been set.
+export EDITOR=${EDITOR:-nano}
+export VISUAL=${VISUAL:-nano}
+export PAGER=${PAGER:-less}
+export LANG=${LANG:-en_US.UTF-8}
 
-  # manpath
-  $manpath
-)
-
-# Apps
-export EDITOR=nvim
-export VISUAL=code
-export PAGER=less
-if [[ "$OSTYPE" == darwin* ]]; then
-  export BROWSER='open'
+# Set the Less input preprocessor.
+# Try both `lesspipe` and `lesspipe.sh` as either might exist on a system.
+if [[ -z "$LESSOPEN" ]] && (( $#commands[(i)lesspipe(|.sh)] )); then
+  export LESSOPEN="| /usr/bin/env $commands[(i)lesspipe(|.sh)] %s 2>&-"
 fi
+export LESS="${LESS:--g -i -M -R -S -w -z-4}"
 
-# Regional settings
-export LANG='en_US.UTF-8'
-
-# Misc
-export KEYTIMEOUT=1
-export SHELL_SESSIONS_DISABLE=1 # Make Apple Terminal behave.
+# macOS
+if [[ "$OSTYPE" == darwin* ]]; then
+  export BROWSER=${BROWSER:-open}
+fi
 
 # Set additional linker and preprocessor flags for Ruby
 export LDFLAGS="-L/opt/homebrew/opt/ruby/lib"
@@ -94,5 +84,3 @@ export CPPFLAGS="-I/opt/homebrew/opt/ruby/include"
 
 # Use `< file` to quickly view the contents of any file.
 [[ -z "$READNULLCMD" ]] || READNULLCMD=$PAGER
-
-# vim: ft=zsh sw=2 ts=2 et
