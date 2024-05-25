@@ -1,3 +1,4 @@
+#!/bin/zsh
 #
 # .zstyles - zstyle settings for features/plugins that need them.
 #
@@ -8,7 +9,6 @@
 
 zstyle ':zim:completion' dumpfile ${__zsh_cache_dir}/zcompdump
 zstyle ':zim:input' double-dot-expand yes
-
 
 #
 # OMZ
