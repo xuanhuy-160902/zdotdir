@@ -5,10 +5,9 @@
 
 # Custom
 export DOTFILES=$XDG_CONFIG_HOME/dotfiles
-export GNUPGHOME=$XDG_DATA_HOME/gnupg
 export REPO_HOME=$XDG_CACHE_HOME/repos
 export ZIM_HOME=$REPO_HOME/zim
-export VOLTA_HOME=$REPO_HOME/volta
+export VOLTA_HOME=$XDG_PROJECTS_DIR/volta
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-21.jdk/Contents/Home
 
 # Ensure path arrays do not contain duplicates.
@@ -49,8 +48,6 @@ path=(
 
   # apps
   /{usr/local,opt/homebrew}/opt/curl/bin(N)
-  # /{usr/local,opt/homebrew}/opt/go/libexec/bin(N)
-  # /{usr/local,opt/homebrew}/share/npm/bin(N)
   /{usr/local,opt/homebrew}/opt/ruby/bin(N)
   /{usr/local,opt/homebrew}/lib/ruby/gems/*/bin(N)
   $HOME/.gem/ruby/*/bin(N)
@@ -61,8 +58,8 @@ path=(
 )
 
 # Set common variables if they have not already been set.
-export EDITOR=${EDITOR:-nano}
-export VISUAL=${VISUAL:-nano}
+export EDITOR=${EDITOR:-nvim}
+export VISUAL=${VISUAL:-nvim}
 export PAGER=${PAGER:-less}
 export LANG=${LANG:-en_US.UTF-8}
 
