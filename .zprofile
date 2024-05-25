@@ -7,7 +7,7 @@
 export DOTFILES=$XDG_CONFIG_HOME/dotfiles
 export GNUPGHOME=$XDG_DATA_HOME/gnupg
 export REPO_HOME=$XDG_CACHE_HOME/repos
-export ANTIDOTE_HOME=$REPO_HOME/antidote
+export ZIM_HOME=$REPO_HOME/zim
 export VOLTA_HOME=$REPO_HOME/volta
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-21.jdk/Contents/Home
 

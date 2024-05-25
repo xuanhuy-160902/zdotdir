@@ -6,6 +6,10 @@
 # Zim
 #
 
+zstyle ':zim:completion' dumpfile ${__zsh_cache_dir}/zcompdump
+zstyle ':zim:input' double-dot-expand yes
+
+
 #
 # OMZ
 #
@@ -23,11 +27,15 @@ zstyle ':omz:plugins:alias-finder' cheaper yes
 zstyle :zle:edit-command-line editor nvim
 
 #
+# Completion
+#
+
+zstyle ':completion::complete:*' cache-path ${__zsh_cache_dir}/zcompcache
+
+#
 # Local
 #
 
 if [[ -r $DOTFILES/local/zsh/zstyles.local.zsh ]]; then
   . $DOTFILES/local/zsh/zstyles.local.zsh
 fi
-
-# vim: ft=zsh sw=2 ts=2 et

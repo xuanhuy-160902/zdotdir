@@ -1,0 +1,71 @@
+# This is not sourced during shell startup, and it's only used to configure the
+# zimfw plugin manager.
+#
+
+#
+# Modules that need to be loaded first
+#
+
+zmodule mattmc3/zephyr -r plugins/zfunctions
+zmodule $ZSH_CUSTOM -r plugins/xdg
+
+#
+# Modules
+#
+
+zmodule environment
+zmodule run-help
+zmodule input
+zmodule archive
+zmodule utility
+zmodule homebrew
+zmodule git
+zmodule fzf
+
+zmodule ajeetdsouza/zoxide
+zmodule atuinsh/atuin
+
+zmodule ohmyzsh/ohmyzsh -r lib -s clipboard.zsh
+zmodule ohmyzsh/ohmyzsh -r lib -s functions.zsh
+
+zmodule ohmyzsh/ohmyzsh -r plugins/copybuffer
+zmodule ohmyzsh/ohmyzsh -r plugins/copyfile
+zmodule ohmyzsh/ohmyzsh -r plugins/copypath
+zmodule ohmyzsh/ohmyzsh -r plugins/aliases
+zmodule ohmyzsh/ohmyzsh -r plugins/alias-finder
+zmodule ohmyzsh/ohmyzsh -r plugins/magic-enter
+zmodule ohmyzsh/ohmyzsh -r plugins/fancy-ctrl-z
+zmodule ohmyzsh/ohmyzsh -r plugins/web-search
+zmodule ohmyzsh/ohmyzsh -r plugins/jsontools
+
+zmodule mattmc3/zephyr -r plugins/macos --if is-macos
+zmodule mattmc3/zephyr -r plugins/confd
+
+# Custom
+#
+
+zmodule $ZSH_CUSTOM -r plugins/golang
+zmodule $ZSH_CUSTOM -r plugins/python
+
+#
+# Prompt
+#
+
+zmodule duration-info --if is-osx-default-terminal
+zmodule git-info --if is-osx-default-terminal
+zmodule asciiship --if is-osx-default-terminal
+
+#
+# Completion
+#
+
+zmodule zsh-users/zsh-completions --fpath src
+zmodule completion
+
+#
+# Modules that must be initialized last
+#
+
+zmodule zsh-users/zsh-syntax-highlighting
+zmodule zsh-users/zsh-history-substring-search
+zmodule zsh-users/zsh-autosuggestions

@@ -11,10 +11,21 @@ alias zprofrc="ZPROFRC=1 zsh"
 
 # zsh custom
 ZSH_CUSTOM=${ZDOTDIR:-$HOME/.config/zsh}
+HISTFILE=${__zsh_user_data_dir}/zsh_history
 
-# use antidote for plugin management
-source $HOMEBREW_PREFIX/opt/antidote/share/antidote/antidote.zsh
-antidote load
+# Download zimfw plugin manager if missing.
+if [[ ! -e ${ZIM_HOME}/zimfw.zsh ]]; then
+  curl -fsSL --create-dirs -o ${ZIM_HOME}/zimfw.zsh \
+    https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
+fi
+
+# Install missing modules, and update ${ZIM_HOME}/init.zsh if missing or outdated.
+if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZDOTDIR:-${HOME}}/.zimrc ]]; then
+  source ${ZIM_HOME}/zimfw.zsh init -q
+fi
+
+# Initialize modules.
+source ${ZIM_HOME}/init.zsh
 
 # done profiling
 [[ -z "$ZPROFRC" ]] || zprof
