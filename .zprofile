@@ -29,7 +29,7 @@ unset _brewcmd
 # Set the list of directories that cd searches.
 cdpath=(
   $XDG_PROJECTS_DIR(N/)
-  $XDG_PROJECTS_DIR/mattmc3(N/)
+  $XDG_PROJECTS_DIR/personal(N/)
   $cdpath
 )
 
